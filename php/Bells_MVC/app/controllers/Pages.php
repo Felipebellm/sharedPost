@@ -1,7 +1,8 @@
 <?php
     class Pages extends Controller {
+        private $postModel;
         public function __construct() {
-            // echo 'Pages loaded';
+           
         }
 
         public function index() {
