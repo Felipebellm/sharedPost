@@ -3,13 +3,13 @@
     define('APPROOT', dirname(dirname(__FILE__)));
 
     // URL Root
-    define('URLROOT', 'http://localhost:8000/Bells_MVC');
+    define('URLROOT', 'http://localhost:8000/SharedPost');
 
     // Site Name
-    define('SITENAME', 'Bells MVC');
+    define('SITENAME', 'Shared Posts');
 
     // DB Params
     define('DB_HOST','db');
     define('DB_USER','root');
-    define('DB_PASS','root');
-    define('DB_NAME','Bells_MVC');
+    define('DB_PASS','pasSharedPosts');
+    define('DB_NAME','db_sahred_post');
