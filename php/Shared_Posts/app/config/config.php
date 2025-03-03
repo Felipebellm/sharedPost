@@ -11,8 +11,8 @@
     // DB Params
     define('DB_HOST','db');
     define('DB_USER','root');
-    define('DB_PASS','pasSharedPosts');
-    define('DB_NAME','db_sahred_post');
+    define('DB_PASS','passSharedPost');
+    define('DB_NAME','db_shared_post');
 
 
     // APP Version

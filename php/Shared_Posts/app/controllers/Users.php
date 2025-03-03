@@ -1,7 +1,9 @@
 <?php 
     class Users extends Controller{
-        public function __construct() {
 
+        private $userModel;
+        public function __construct() {
+            $this->userModel = $this->model('User');
         }
 
         public function register() {
@@ -27,6 +29,11 @@
                 // Vlaidate Email
                 if (empty($data['email'])){
                     $data['email_err'] = "Please enter email";
+                } else {
+                    //Check Email
+                    if ($this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err'] = "Email is already taken";
+                    }
                 }
 
                 // Validate Name
@@ -113,7 +120,7 @@
                 // Make Sure errors are empty
                 if (empty($data['email_err']) &&
                     empty($data['password_err'])) {
-                        die('SUCCESS');
+                        
                 } else {
                     // Load View with errors
                     $this->view('users/login', $data);
