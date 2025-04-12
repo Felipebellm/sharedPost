@@ -62,7 +62,19 @@
                     empty($data['name_err']) &&
                     empty($data['password_err']) &&
                     empty($data['confirm_password_err'])) {
-                        die('SUCCESS');
+                        // Vlaidated
+
+
+                        //Hash Password
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                        //Register User
+                        if ($this->userModel->register($data)) {
+                            flash('register_success', 'You are registered and can log in');
+                            redirect('users/login');
+                        } else {
+                            die('Something went wrong');
+                        }
                 } else {
                     // Load View with errors
                     $this->view('users/register', $data);
@@ -117,10 +129,23 @@
                     $data['password_err'] = "Password must be atleast 6 characters";
                 }
 
+                // CHeck for user/email
+                if($this->userModel->findUserByEmail($data['password_err'])){
+                    //User found
+                } else {
+                    // User nor found
+                    $data['email_err'] = 'No user found';
+                }
+
                 // Make Sure errors are empty
                 if (empty($data['email_err']) &&
                     empty($data['password_err'])) {
-                        
+                    //Check ans set logged in user
+                    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                    if ($loggedInUser){
+                        //Create
+                    }
                 } else {
                     // Load View with errors
                     $this->view('users/login', $data);
